@@ -1,0 +1,37 @@
+@startuml
+
+left to right direction
+
+class Term {
+    name: str
+    type: str
+    value: Any
+}
+
+class Atom {
+    name: str
+    args: List[Term]
+    isPositive: bool
+}
+
+class Conjunct {
+    args: List[Atom]
+}
+
+class Implication {
+    left: Conjunct
+    right: Conjunct
+}
+
+class Knowledge {
+    data: Conjunct
+    rules: List[Implication]
+}
+
+Term <|-- Atom
+Atom <|-- Conjunct
+Conjunct <|-- Implication
+Conjunct <|-- Knowledge
+Implication <|-- Knowledge
+
+@enduml

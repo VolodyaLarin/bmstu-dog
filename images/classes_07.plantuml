@@ -1,0 +1,31 @@
+@startuml
+
+' left to right direction
+
+class Term {
+    - name: str
+    - membership_function: Callable[[float], float]
+
+    +evaluate(value: float) -> float
+}
+
+class LinguisticVariable {
+    - name: str
+    - terms: List[Term]
+    - value: float # Нужно для задания четкого значения
+}
+
+class Rule {
+    - input_variables: Dict[LinguisticVariable, Term]
+    - output_variable: LinguisticVariable
+    - ouput_term: Term
+
+    +matches(variable_name: str, value: float) -> float
+    +output_func(min_value: float) -> Callable[float]
+}
+
+Term "1" *-- "many" LinguisticVariable
+Rule "1" *-- "many" LinguisticVariable 
+Rule "1" *-- "many" Term
+
+@enduml

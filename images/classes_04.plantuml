@@ -1,0 +1,30 @@
+@startuml
+
+left to right direction
+
+class Term {
+    # name: str
+    # type: "var"|"const"
+    # value: Any
+    +__init__(name, type, value)
+    +copy()
+}
+
+class Atom {
+    # name: str
+    # args: List[Term]
+    # isPositive: bool
+    +__init__(name, args, isPositive)
+    +copy()
+}
+
+class Disjunct {
+    # args: List[Atom]
+    +__init__(args)
+    +copy()
+}
+
+Atom "1" -- "*" Term : args
+Disjunct "1" -- "*" Atom : args
+
+@enduml

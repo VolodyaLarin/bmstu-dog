@@ -1,0 +1,36 @@
+@startuml
+
+left to right direction
+
+class Node {
+    +number : int
+}
+
+class Rule {
+    +number : int
+    +goalNode : Node
+    +nodeArr : List<Node>
+}
+
+class GraphDFS {
+    +rules : List<Rule>
+    
+    +openNodes : List<Node>
+    +openRules : List<Rule>
+    
+    +closeNodes : List<Node>
+    +closeRules : List<Rule>
+    
+    +prohibitNodes : List<Node>
+    +prohibitRules : List<Rule>
+    
+    +goalNode : Node
+    +FY : int
+    +FN : int
+}
+
+GraphDFS "1" -- "*" Rule
+Rule "1" --> "1" Node : goalNode
+Rule "1" -- "*" Node : nodeArr
+
+@enduml
